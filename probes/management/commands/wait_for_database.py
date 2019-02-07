@@ -3,10 +3,10 @@ FILE: probes/management/commands/wait_for_database.py
 """
 from django.core.management.base import BaseCommand
 from django.db import connection
+from time import sleep
 
 
-class Command(BaseCommand)
-
+class Command(BaseCommand):
     """
     A readiness probe you can use for Kubernetes.
 
@@ -18,12 +18,19 @@ class Command(BaseCommand)
 
     def handle(self, *args, **options):
         """Throw an exception if database is not (yet) available."""
-        while True:
-            for uptime in range(4):
+        wait_for_db_seconds = 1
+        stable_for_seconds = 4
+
+        for uptime in range(stable_for_seconds):
+
+            # loop until we have a database connection
+            while True:
                 try:
                     connection.cursor().execute('SELECT')
+                    break
                 except:  # TODO: use appropriate exception type
                     print('Waiting for database')
-                    sleep(2)
-                    continue
-                break
+                    sleep(wait_for_db_seconds)
+
+        print(f'Connection alive for > {uptime}s')
+        sleep(1)

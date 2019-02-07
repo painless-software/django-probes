@@ -2,9 +2,9 @@
 """
 Packaging setup to test access to the database
 """
-
 from os.path import abspath, dirname, join
-from setuptools import setup
+from setuptools import find_packages, setup
+
 import probes as package
 
 
@@ -21,12 +21,12 @@ setup(
     license=package.__license__,
     author=package.__author__,
     author_email=package.__email__,
-    description='Test whether access to the database is possible',
+    description=package.__doc__.strip(),
     long_description=read_file('README.rst'),
-    url='https://github.com/vshn/python-hatchbuck',
-    install_requires=read_file('requirements.txt'),
+    url=package.__url__,
+    packages=find_packages(exclude=['test*']),
     include_package_data=True,
-    keywords=['django', 'DB', 'probes'],
+    keywords=['django', 'database', 'probes', 'kubernetes'],
     classifiers=[
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
@@ -37,5 +37,6 @@ setup(
         'Programming Language :: Python'
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
     ],
 )

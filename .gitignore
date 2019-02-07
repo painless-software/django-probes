@@ -1,3 +1,21 @@
-venv
-.idea
+# IDEs & editors
+/.idea/
 
+# cache
+*.py[cod]
+__pycache__/
+
+# virtualenv
+/venv/
+/virtualenv/
+
+# packaging
+/*.egg-info/
+/build/
+/dist/
+
+# testing
+/.cache/
+/pytestdebug.log
+/.pytest_cache/
+/.tox/
