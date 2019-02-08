@@ -1,5 +1,5 @@
 """
-FILE: probes/management/commands/wait_for_database.py
+FILE: django_probes/management/commands/wait_for_database.py
 """
 from django.core.management.base import BaseCommand
 from django.db import connection
@@ -32,5 +32,5 @@ class Command(BaseCommand):
                     print('Waiting for database')
                     sleep(wait_for_db_seconds)
 
-        print(f'Connection alive for > {uptime}s')
-        sleep(1)
+            print('Connection alive for > {uptime}s'.format(uptime=uptime))
+            sleep(1)

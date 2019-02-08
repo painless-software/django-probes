@@ -5,7 +5,7 @@ Packaging setup to test access to the database
 from os.path import abspath, dirname, join
 from setuptools import find_packages, setup
 
-import probes as package
+import django_probes as package
 
 
 def read_file(filename):
