@@ -6,4 +6,6 @@ verify_ssl = true
 [packages]
 
 [dev-packages]
-tox = ">=3"
+pytest-django = "*"
+tox = "*"
+"psycopg2" = "*"
