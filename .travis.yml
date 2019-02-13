@@ -18,13 +18,13 @@ env:
 
 matrix:
   allow_failures:
-  - env: TOXENV=behave-latest
+    - env: TOXENV=behave-latest
   exclude:
-  # Python/Django combinations that aren't officially supported
-  - { env: DJANGO=1.11, python: 3.7 }
-  - { env: DJANGO=2.0, python: 2.7 }
-  - { env: DJANGO=2.1, python: 2.7 }
-  - { env: DJANGO=2.1, python: 3.4 }
+    # Python/Django combinations that aren't officially supported
+    - { env: DJANGO=1.11, python: 3.7 }
+    - { env: DJANGO=2.0, python: 2.7 }
+    - { env: DJANGO=2.1, python: 2.7 }
+    - { env: DJANGO=2.1, python: 3.4 }
 
 stages:
   # - lint
@@ -42,4 +42,4 @@ jobs:
         skip_cleanup: true
         user: Bashar.said
         password:
-          secure: XI9Z/ZvE+V0OxFTE96bl9c0zTn+n5tA62ul4Lv3j++HraCfe3IFy7nBdSsxHeU0m1qckL2uGZ5qMbrj2pakMtnt2QZJGX2KyFv9W6TDXwXVnfY/Jnvir0Hvm2MRSoglDShS1yOF/W7sZhaLaXlCySSWJAi5C6eBDcDMODkFK1lHOuB3gZGZrfHOqNIcSk9pxU5bsvug6k6q5oh4Qwe9QVh3nvlheENdZXOsjz2X7OP3UcILaXRLCS7GZc9skvYVMXoJk5Mjq7I2SyoMNU2294sN4fLV0JnEHcQTBuOCtocJHR+9ikDFKHv39/0Rv5a96Cko7vyC3PYhzg2238QbjpFO0HwzD6H0ZDKO/zhJmdAdfgZK948akrJSRr2qLJuXgUByWW0pSOQdFqLwxsgr/ZwwjgEqxk0ci8ShyYxGcacPTZ6uQqVKiMS2U6IRbzJOnFZxPLhULNWOWVWyAJndAww2cNz29Rgne3UwHGI2h4Dx3Rf9AVAQbe3+uSftXDSr4W6KhLPLNavh/vrpLm2uIecuglL1IL1a3kWXwhNIQSTi/PsULWkvKcn1pgyjkq+oGsoqlarMQl41plX8C+CbXXhUjMotCrcDSqCZMw8dR/RY68szYN4mMx3G51DRFg8vcUAOJRvqNsM4ND8klClez1Uj0Atx6ycEaf1in39XTfHE=
+          secure: D99UQ4DWGbwtry9Yyaszw+qZp0Ma4KZKBMFIe1dwzl8XQdRtdH+duQhPJY62OyYhZd2vD8MlAi/gcN5aknQ9P0GA+kcThB9SRdDca5Zmy80JLRE3jkksnCg9EmgjLXMdAjJ9fx14OmjGw6leshu1gptKUnBqcbOEvGJ7jF857bB/TY74LqP1BpB49My2Tw4d6MMt1oOWU4EoILX3cY2lZiVu0X/CvqMnBBNwl48Roi8iWDi7u2nbf9tW29Sw/7iPWUA1wkj044NL96K7eoLNyWlsYyEnvkCfYl1QKKw0TMLvd5G3ht4TgiIOeVN07jtDLohPqGJz5sW0AX98/Xl+1nhKxGax0FLZzTVnh8whQi8OnH89m2MXlt0+sy9RCWEyGWat0m5il+47Ce/WXhNc3expoXkLJ5qnyCz9znm0Nt9gAATxsF5LcafqyYVZA7q9G3CMXrQ92FE+2wYo3GuK/0m+Vj7B+kl6dLyA1urTOoBnKW9wiHLjOIIgcffZ/6j0whwdFYKNb+RVHNFF1KfW1fqpWtJ2h7m4fFP0zIpfZGe94gXtagReawcTvrRwkTUMICdQsQWBdzlTinFq5v3s928898llPHpUocY70rID0KfuYggOK5ZNw+GTnNs+KH/O+zmQgKL3zFc7HjiyNnKCx+dMP0P/Apphz8DyWoVnhBM=
