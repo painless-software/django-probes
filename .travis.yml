@@ -6,23 +6,33 @@ python:
   - '3.6'
   - '3.7'
 
-install: pip install tox-travis
-script: tox
+install:
+  - pip install tox-travis
+script:
+  - tox
 
 env:
   - DJANGO=1.11
   - DJANGO=2.0
   - DJANGO=2.1
 
+matrix:
+  allow_failures:
+  - env: TOXENV=behave-latest
+  exclude:
+  # Python/Django combinations that aren't officially supported
+  - { env: DJANGO=1.11, python: 3.7 }
+  - { env: DJANGO=2.0, python: 2.7 }
+  - { env: DJANGO=2.1, python: 2.7 }
+  - { env: DJANGO=2.1, python: 3.4 }
+
 stages:
-  - lint
-  - test
+  # - lint
+  # - test
   - deploy
 
 jobs:
   include:
-    - { stage: lint, python: 3.6, env: TOXENV=flake8 }
-    - { stage: lint, python: 3.6, env: TOXENV=pylint }
     - { stage: lint, python: 3.7, env: TOXENV=flake8 }
     - { stage: lint, python: 3.7, env: TOXENV=pylint }
 
@@ -33,4 +43,4 @@ jobs:
         skip_cleanup: true
         user: Bashar.said
         password:
-          secure:
+            secure: dwqyeGxY8KkVmpTlCAnUJnF4kAbP1ESKQfA5/h21Z2P6Z6/B/NybEmu48ZUho+ZzAklnhThh1URNmKzH58+npTDR6lNbvXlhQIg+VMITh++ElFi8V/cJcrCSvPmqIHRbHDsu4Sp3txihi/kkA3ttIRa6y/V6vktZzoNuNSZwsrAHWV5AL62XszV73NRfjFlYwy323hKzrKM1hZV3mu2nUbj7lVaf0OXQVs/wSLHkq1j3Ip5+NmQ2QHsy8NmUU+k23GTsFePsPJpasujiAMtSAz2s4CYZdOyM+G/r7UoTfmXJIQK5rDB2aPxdMp1o6ltY8p3iSZDyUDC3lTlKWRlTjxlIlSvT+W7rUpteCpKVDD/JrxCHy/e7gaVzlSCohIOkuoope7JWlpMnS57MynwjkSfSi0MiHho+YKgGxltUkW5lBA5i9O2H8CxEwISVNKs2zEUwd4KobrnQ53DybGx/mf9Cg500qqjZL8DbGXBIMt0TyBuCdjxyLhvXWTOdxZ55WS8UxdsyY+Yq5u1pAK/6qk8vexVNK5aPmTKDjvITIRiiVMai1TkxVzqO5nyYkrVgtB28ttk/sqobkeU/mQbQagWQ3YRYOVGoMsg3Dw39z/79F3ZJV3nqNrw7kqbKA8HYi57Ws5BNJLibnxanKvpvgncqeM4gq/j7OO9DZCd0MEw=
