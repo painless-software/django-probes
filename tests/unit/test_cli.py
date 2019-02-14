@@ -1,20 +1,30 @@
 """
 Verify that ``python manage.py wait_for_database`` works fine.
 """
-import pytest
+# import pytest
 
 from django.core.management import call_command
-from django.test import override_settings
 
-from django_probes.management.commands import wait_for_database
+try:
+    from unittest.mock import patch
+except ImportError:  # Python 2.7
+    from mock import patch
 
 
-@pytest.mark.django_db
-def test_no_exception_when_connection_absent():
+# @pytest.mark.django_db
+# @patch('django.db.utils.OperationalError')
+# def test_exception_caught_when_connection_absent(mock_db_exception):
+#     """
+#     When database connection is absent related errors are caught.
+#     """
+#     call_command('wait_for_database')
+#     assert mock_db_exception.called
+
+
+@patch('django.db.connection.cursor')
+def test_loops_stable_times(mock_db_cursor):
     """
-    Blah ...
+    Database connection must be stable 4 consecutive times in a row.
     """
-    management_command = wait_for_database.__name__.split('.')[-1]
-
-    with pytest.raises(SystemExit):
-        call_command(management_command)
+    call_command('wait_for_database')
+    assert mock_db_cursor.call_count == 4
