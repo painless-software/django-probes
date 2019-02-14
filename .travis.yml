@@ -17,8 +17,6 @@ env:
   - DJANGO=2.1
 
 matrix:
-  allow_failures:
-    - env: TOXENV=behave-latest
   exclude:
     # Python/Django combinations that aren't officially supported
     - { env: DJANGO=1.11, python: 3.7 }
@@ -27,14 +25,15 @@ matrix:
     - { env: DJANGO=2.1, python: 3.4 }
 
 stages:
-  # - lint
-  # - test
+  - lint
+  - test
   - deploy
 
 jobs:
   include:
     - { stage: lint, python: 3.7, env: TOXENV=flake8 }
     - { stage: lint, python: 3.7, env: TOXENV=pylint }
+    - { stage: lint, python: 3.7, env: TOXENV=readme }
     - stage: deploy
       script: skip
       deploy:
