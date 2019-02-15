@@ -65,18 +65,19 @@ class Command(BaseCommand):
     help = 'Probes for database availability'
 
     def add_arguments(self, parser):
-        parser.add_argument('--timeout', '-t', default=180, type=int,
+        parser.add_argument('--timeout', '-t', type=int, default=180,
                             metavar='SECONDS', action='store',
-                            help='how long to wait (seconds), default: 180')
-        parser.add_argument('--stable', '-s', default=5, type=int,
+                            help='how long to wait for the database before '
+                                 'timing out (seconds), default: 180')
+        parser.add_argument('--stable', '-s', type=int, default=5,
                             metavar='SECONDS', action='store',
-                            help='how long to observe whether '
-                                 'connection is stable (seconds), default: 5')
-        parser.add_argument('--wait-when-down', '-d', default=2, type=int,
+                            help='how long to observe whether connection '
+                                 'is stable (seconds), default: 5')
+        parser.add_argument('--wait-when-down', '-d', type=int, default=2,
                             metavar='SECONDS', action='store',
                             help='delay between checks when database is '
                                  'down (seconds), default: 2')
-        parser.add_argument('--wait-when-alive', '-a', default=1, type=int,
+        parser.add_argument('--wait-when-alive', '-a', type=int, default=1,
                             metavar='SECONDS', action='store',
                             help='delay between checks when database is '
                                  'up (seconds), default: 1')
