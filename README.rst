@@ -3,7 +3,21 @@ Django-probes |latest-version|
 
 |build-status| |python-support| |license|
 
-This python package provides a management to check whether the database is ready
+Provides a Django management command to check whether the primary database
+is ready to accept connections.
+
+Run this command in a Kubernetes or OpenShift `Init Container`_ to make
+your Django application wait until the database is available (e.g. to run
+database migrations).
+
+Why Should I Use This App?
+--------------------------
+
+``wait_for_database`` is a *single* command for *all* database engines
+Django supports. It automatically checks the database you have configured
+in your Django project settings. No need to code a specific wait command
+for Postgres, MariaDB, Oracle, etc., no need to pull a database engine
+specific container just for running the database readiness check.
 
 .. |latest-version| image:: https://img.shields.io/pypi/v/django-probes.svg
    :alt: Latest version on PyPI
@@ -18,6 +32,8 @@ This python package provides a management to check whether the database is ready
    :alt: Software license
    :target: https://github.com/vshn/django-probes/blob/master/LICENSE
 
+.. _Init Container: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+
 Installation
 ============
 
@@ -30,7 +46,7 @@ The easiest way to install django-probes is with pip
 Basic Usage
 ===========
 
-Add django-probes to your Django application:
+1. Add django-probes to your Django application:
 
 .. code:: python
 
@@ -39,8 +55,8 @@ Add django-probes to your Django application:
         'django_probes',
     ]
 
-Add an ``initContainer`` to your Kubernetes/OpenShift deployment configuration,
-which calls the ``wait_for_database`` management command:
+2. Add an `Init Container`_ to your Kubernetes/OpenShift deployment
+configuration, which calls the ``wait_for_database`` management command:
 
 .. code:: yaml
 
@@ -60,7 +76,8 @@ which calls the ``wait_for_database`` management command:
 Command Line Options
 --------------------
 
-The management command has sane default, which you can override to your liking.
+The management command comes with sane defaults, which you can override
+if needed:
 
 :--timeout, -t:
     how long to wait (seconds), default: 180
