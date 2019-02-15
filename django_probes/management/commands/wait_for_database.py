@@ -12,13 +12,14 @@ except NameError:  # Python 2.7
     TimeoutError = RuntimeError  # noqa, pylint: disable=redefined-builtin
 
 
-def wait_for_database():
+def wait_for_database(**opts):
     """
     The main loop waiting for the database connection to come up.
     """
-    wait_for_db_seconds = 1
-    stable_for_seconds = 4
-    timeout_seconds = 3
+    wait_for_db_seconds = opts['wait_when_down']
+    alive_check_delay = opts['wait_when_alive']
+    stable_for_seconds = opts['stable']
+    timeout_seconds = opts['timeout']
 
     conn_alive_start = None
     start = time()
@@ -45,7 +46,7 @@ def wait_for_database():
 
         print('Connection alive for > {uptime}s'.format(
             uptime=int(time() - conn_alive_start)))
-        sleep(1)
+        sleep(alive_check_delay)
 
 
 class Command(BaseCommand):
@@ -58,12 +59,29 @@ class Command(BaseCommand):
     """
     help = 'Probes for database availability'
 
+    def add_arguments(self, parser):
+        parser.add_argument('--timeout', '-t', default=180, type=int,
+                            metavar='SECONDS', action='store',
+                            help='how long to wait (seconds), default: 180')
+        parser.add_argument('--stable', '-s', default=4, type=int,
+                            metavar='SECONDS', action='store',
+                            help='how long to observe whether '
+                                 'connection is stable (seconds), default: 4')
+        parser.add_argument('--wait-when-alive', '-a', default=1, type=int,
+                            metavar='SECONDS', action='store',
+                            help='delay between checks when database is '
+                                 'up (seconds), default: 1')
+        parser.add_argument('--wait-when-down', '-d', default=1, type=int,
+                            metavar='SECONDS', action='store',
+                            help='delay between checks when database is '
+                                 'down (seconds), default: 1')
+
     def handle(self, *args, **options):
         """
         Wait for a database connection to come up. Exit with error
         status when a timeout threshold is surpassed.
         """
         try:
-            wait_for_database()
+            wait_for_database(**options)
         except TimeoutError as err:
             raise SystemExit(err)
