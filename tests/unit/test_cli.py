@@ -18,7 +18,7 @@ from django_probes.management.commands.wait_for_database \
 CLI_PARAMS = {
     'wait_when_down': 1,
     'wait_when_alive': 1,
-    'stable': 999,
+    'stable': 3,
     'timeout': 1,
 }
 
@@ -39,7 +39,6 @@ def test_loops_stable_times(mock_db_cursor):
     """
     Database connection must be stable some consecutive times in a row.
     """
-    with pytest.raises(TimeoutError):
-        wait_for_database(**CLI_PARAMS)
+    wait_for_database(**CLI_PARAMS)
 
-    assert mock_db_cursor.call_count == 1  # CLI_PARAMS['stable']
+    assert mock_db_cursor.call_count == CLI_PARAMS['stable'] + 1

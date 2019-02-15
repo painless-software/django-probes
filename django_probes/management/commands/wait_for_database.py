@@ -24,28 +24,33 @@ def wait_for_database(**opts):
     conn_alive_start = None
     start = time()
 
-    while time() - start < stable_for_seconds:
-
+    while True:
         # loop until we have a database connection or we run into a timeout
         while True:
-            elapsed_time = int(time() - start)
-
-            if elapsed_time >= timeout_seconds:
-                raise TimeoutError(
-                    'Could not establish database connection.')
             try:
                 connection.cursor().execute('SELECT')
                 if not conn_alive_start:
                     conn_alive_start = time()
                 break
             except OperationalError as err:
+                conn_alive_start = None
+
+                elapsed_time = int(time() - start)
+                if elapsed_time >= timeout_seconds:
+                    raise TimeoutError(
+                        'Could not establish database connection.')
+
                 err_message = str(err).strip()
                 print('Waiting for database (cause: {msg}) ... {elapsed}s'.
                       format(msg=err_message, elapsed=elapsed_time))
                 sleep(wait_for_db_seconds)
 
-        print('Connection alive for > {uptime}s'.format(
-            uptime=int(time() - conn_alive_start)))
+        uptime = int(time() - conn_alive_start)
+        print('Connection alive for > {}s'.format(uptime))
+
+        if uptime >= stable_for_seconds:
+            break
+
         sleep(alive_check_delay)
 
 
