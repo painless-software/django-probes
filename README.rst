@@ -82,8 +82,8 @@ if needed:
 :--timeout, -t:
     how long to wait (seconds), default: 180
 :--stable, -s:
-    how long to observe whether connection is stable (seconds), default: 4
+    how long to observe whether connection is stable (seconds), default: 5
+:--wait-when-down, -d:
+    delay between checks when database is down (seconds), default: 2
 :--wait-when-alive, -a:
     delay between checks when database is up (seconds), default: 1
-:--wait-when-down, -d:
-    delay between checks when database is down (seconds), default: 1

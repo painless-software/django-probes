@@ -63,18 +63,18 @@ class Command(BaseCommand):
         parser.add_argument('--timeout', '-t', default=180, type=int,
                             metavar='SECONDS', action='store',
                             help='how long to wait (seconds), default: 180')
-        parser.add_argument('--stable', '-s', default=4, type=int,
+        parser.add_argument('--stable', '-s', default=5, type=int,
                             metavar='SECONDS', action='store',
                             help='how long to observe whether '
-                                 'connection is stable (seconds), default: 4')
+                                 'connection is stable (seconds), default: 5')
+        parser.add_argument('--wait-when-down', '-d', default=2, type=int,
+                            metavar='SECONDS', action='store',
+                            help='delay between checks when database is '
+                                 'down (seconds), default: 2')
         parser.add_argument('--wait-when-alive', '-a', default=1, type=int,
                             metavar='SECONDS', action='store',
                             help='delay between checks when database is '
                                  'up (seconds), default: 1')
-        parser.add_argument('--wait-when-down', '-d', default=1, type=int,
-                            metavar='SECONDS', action='store',
-                            help='delay between checks when database is '
-                                 'down (seconds), default: 1')
 
     def handle(self, *args, **options):
         """
