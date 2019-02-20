@@ -70,7 +70,7 @@ configuration, which calls the ``wait_for_database`` management command:
               image: my-django-app:latest
               envFrom:
               - secretRef:
-                name: django
+                  name: django
               command: ['python', 'manage.py', 'wait_for_database']
 
 Command Line Options
