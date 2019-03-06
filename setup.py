@@ -10,8 +10,7 @@ import django_probes as package
 
 def read_file(filename):
     """Get the contents of a file"""
-    here = abspath(dirname(__file__))
-    with open(join(here, filename)) as file:
+    with open(join(abspath(dirname(__file__)), filename)) as file:
         return file.read()
 
 
@@ -27,10 +26,10 @@ setup(
     url=package.__url__,
     packages=find_packages(exclude=['test*']),
     include_package_data=True,
-    keywords=['django', 'database', 'probes', 'kubernetes'],
+    keywords=['django', 'database', 'probes', 'docker', 'kubernetes'],
     classifiers=[
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
+        'License :: OSI Approved :: BSD License',
         'Framework :: Django',
         'Framework :: Django :: 1.11',
         'Framework :: Django :: 2.0',

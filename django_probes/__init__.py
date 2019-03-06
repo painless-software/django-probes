@@ -1,8 +1,8 @@
 """
-Test whether access to the database is possible
+Make Django wait until database is ready. Probes for Docker and Kubernetes.
 """
 __author__ = 'VSHN AG'
 __email__ = 'tech@vshn.ch'
 __url__ = 'https://github.com/vshn/django-probes'
-__version__ = '1.1.0'
-__license__ = 'MIT'
+__version__ = '1.2.0'
+__license__ = 'BSD 3-Clause'
