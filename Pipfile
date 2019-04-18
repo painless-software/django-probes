@@ -7,5 +7,6 @@ verify_ssl = true
 
 [dev-packages]
 pytest-django = "*"
+pytest-pythonpath = "*"
 tox = "*"
-psycopg2 = "*"
+psycopg2-binary = "*"
