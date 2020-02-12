@@ -1,53 +1,49 @@
-dist: xenial
-sudo: required
-
+os: linux
 language: python
 python:
-  - 2.7
-  - 3.4
-  - 3.5
-  - 3.6
-  - 3.7
-
-install:
-  - pip install tox-travis
-script:
-  - tox
+- 3.4
+- 3.5
+- 3.6
+- 3.7
+- 3.8
 
 env:
-  - DJANGO=1.11
-  - DJANGO=2.1
-  - DJANGO=2.2
+- DJANGO=1.11
+- DJANGO=2.2
+- DJANGO=3.0
 
-matrix:
-  exclude:
-    # Python/Django combinations that aren't officially supported
-    - { python: 3.7, env: DJANGO=1.11 }
-    - { python: 2.7, env: DJANGO=2.1 }
-    - { python: 3.4, env: DJANGO=2.1 }
-    - { python: 2.7, env: DJANGO=2.2 }
-    - { python: 3.4, env: DJANGO=2.2 }
+install:
+- pip install tox-travis
+script:
+- tox
 
 stages:
-  - lint
-  - test
-  - deploy
+- lint
+- test
+- deploy
 
 jobs:
+  exclude:
+  # Python/Django combinations that aren't officially supported
+  - { python: 3.4, env: DJANGO=2.2 }
+  - { python: 3.4, env: DJANGO=3.0 }
+  - { python: 3.5, env: DJANGO=3.0 }
+  - { python: 3.8, env: DJANGO=1.11 }
   include:
-    - { stage: lint, python: 3.7, env: TOXENV=flake8 }
-    - { stage: lint, python: 3.7, env: TOXENV=pylint }
-    - { stage: lint, python: 3.7, env: TOXENV=bandit }
-    - { stage: lint, python: 3.7, env: TOXENV=readme }
-    - stage: deploy
-      env:
-      install: skip
-      script: skip
-      deploy:
-        provider: pypi
-        distributions: sdist bdist_wheel
-        user: Bashar.said
-        password:
-          secure: D99UQ4DWGbwtry9Yyaszw+qZp0Ma4KZKBMFIe1dwzl8XQdRtdH+duQhPJY62OyYhZd2vD8MlAi/gcN5aknQ9P0GA+kcThB9SRdDca5Zmy80JLRE3jkksnCg9EmgjLXMdAjJ9fx14OmjGw6leshu1gptKUnBqcbOEvGJ7jF857bB/TY74LqP1BpB49My2Tw4d6MMt1oOWU4EoILX3cY2lZiVu0X/CvqMnBBNwl48Roi8iWDi7u2nbf9tW29Sw/7iPWUA1wkj044NL96K7eoLNyWlsYyEnvkCfYl1QKKw0TMLvd5G3ht4TgiIOeVN07jtDLohPqGJz5sW0AX98/Xl+1nhKxGax0FLZzTVnh8whQi8OnH89m2MXlt0+sy9RCWEyGWat0m5il+47Ce/WXhNc3expoXkLJ5qnyCz9znm0Nt9gAATxsF5LcafqyYVZA7q9G3CMXrQ92FE+2wYo3GuK/0m+Vj7B+kl6dLyA1urTOoBnKW9wiHLjOIIgcffZ/6j0whwdFYKNb+RVHNFF1KfW1fqpWtJ2h7m4fFP0zIpfZGe94gXtagReawcTvrRwkTUMICdQsQWBdzlTinFq5v3s928898llPHpUocY70rID0KfuYggOK5ZNw+GTnNs+KH/O+zmQgKL3zFc7HjiyNnKCx+dMP0P/Apphz8DyWoVnhBM=
-        on:
-          tags: true
+  - { stage: lint, python: 3.7, env: TOXENV=flake8 }
+  - { stage: lint, python: 3.7, env: TOXENV=pylint }
+  - { stage: lint, python: 3.7, env: TOXENV=bandit }
+  - { stage: lint, python: 3.7, env: TOXENV=readme }
+  - stage: deploy
+    python: 3.7
+    env:
+    install: skip
+    script: skip
+    deploy:
+      provider: pypi
+      distributions: sdist bdist_wheel
+      user: Bashar.said
+      password:
+        secure: D99UQ4DWGbwtry9Yyaszw+qZp0Ma4KZKBMFIe1dwzl8XQdRtdH+duQhPJY62OyYhZd2vD8MlAi/gcN5aknQ9P0GA+kcThB9SRdDca5Zmy80JLRE3jkksnCg9EmgjLXMdAjJ9fx14OmjGw6leshu1gptKUnBqcbOEvGJ7jF857bB/TY74LqP1BpB49My2Tw4d6MMt1oOWU4EoILX3cY2lZiVu0X/CvqMnBBNwl48Roi8iWDi7u2nbf9tW29Sw/7iPWUA1wkj044NL96K7eoLNyWlsYyEnvkCfYl1QKKw0TMLvd5G3ht4TgiIOeVN07jtDLohPqGJz5sW0AX98/Xl+1nhKxGax0FLZzTVnh8whQi8OnH89m2MXlt0+sy9RCWEyGWat0m5il+47Ce/WXhNc3expoXkLJ5qnyCz9znm0Nt9gAATxsF5LcafqyYVZA7q9G3CMXrQ92FE+2wYo3GuK/0m+Vj7B+kl6dLyA1urTOoBnKW9wiHLjOIIgcffZ/6j0whwdFYKNb+RVHNFF1KfW1fqpWtJ2h7m4fFP0zIpfZGe94gXtagReawcTvrRwkTUMICdQsQWBdzlTinFq5v3s928898llPHpUocY70rID0KfuYggOK5ZNw+GTnNs+KH/O+zmQgKL3zFc7HjiyNnKCx+dMP0P/Apphz8DyWoVnhBM=
+      on:
+        tags: true
