@@ -28,7 +28,7 @@ def wait_for_database(**opts):
         # loop until we have a database connection or we run into a timeout
         while True:
             try:
-                connection.cursor().execute('SELECT')
+                connection.cursor().execute('SELECT 1')
                 if not conn_alive_start:
                     conn_alive_start = time()
                 break
