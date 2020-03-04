@@ -66,7 +66,7 @@ configuration, which calls the ``wait_for_database`` management command:
         template:
           spec:
             initContainers:
-            - name: check-db-ready
+            - name: wait-for-database
               image: my-django-app:latest
               envFrom:
               - secretRef:
