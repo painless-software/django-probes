@@ -2,7 +2,7 @@
 FILE: django_probes/management/commands/wait_for_database.py
 """
 from time import sleep, time
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 from django.db import connection
 from django.db.utils import OperationalError
 
@@ -90,4 +90,4 @@ class Command(BaseCommand):
         try:
             wait_for_database(**options)
         except TimeoutError as err:
-            raise SystemExit(err)
+            raise CommandError(err)
