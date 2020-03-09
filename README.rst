@@ -87,3 +87,5 @@ if needed:
     delay between checks when database is down (seconds), default: 2
 :--wait-when-alive, -a:
     delay between checks when database is up (seconds), default: 1
+:--database:
+    Nominates a database to wait for, default: default

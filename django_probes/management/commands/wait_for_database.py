@@ -3,7 +3,7 @@ FILE: django_probes/management/commands/wait_for_database.py
 """
 from time import sleep, time
 from django.core.management.base import BaseCommand, CommandError
-from django.db import connection
+from django.db import connections, DEFAULT_DB_ALIAS
 from django.db.utils import OperationalError
 
 try:
@@ -20,8 +20,10 @@ def wait_for_database(**opts):
     alive_check_delay = opts['wait_when_alive']
     stable_for_seconds = opts['stable']
     timeout_seconds = opts['timeout']
+    db_alias = opts['database']
 
     conn_alive_start = None
+    connection = connections[db_alias]
     start = time()
 
     while True:
@@ -58,7 +60,7 @@ class Command(BaseCommand):
     """
     A readiness probe you can use for Kubernetes.
 
-    If the default database is ready, i.e. willing to accept connections
+    If the database is ready, i.e. willing to accept connections
     and handling requests, then this call will exit successfully. Otherwise
     the command exits with an error status after reaching a timeout.
     """
@@ -81,6 +83,10 @@ class Command(BaseCommand):
                             metavar='SECONDS', action='store',
                             help='delay between checks when database is '
                                  'up (seconds), default: 1')
+        parser.add_argument('--database', default=DEFAULT_DB_ALIAS,
+                            action='store', dest='database',
+                            help='Nominates a database to wait for. '
+                                 'Defaults to the "default" database.')
 
     def handle(self, *args, **options):
         """
