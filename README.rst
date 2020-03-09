@@ -80,12 +80,12 @@ The management command comes with sane defaults, which you can override
 if needed:
 
 :--timeout, -t:
-    how long to wait for the database before timing out (seconds), default: 180
+    how long to wait for the database before timing out (seconds), default: ``180``
 :--stable, -s:
-    how long to observe whether connection is stable (seconds), default: 5
+    how long to observe whether connection is stable (seconds), default: ``5``
 :--wait-when-down, -d:
-    delay between checks when database is down (seconds), default: 2
+    delay between checks when database is down (seconds), default: ``2``
 :--wait-when-alive, -a:
-    delay between checks when database is up (seconds), default: 1
+    delay between checks when database is up (seconds), default: ``1``
 :--database:
-    Nominates a database to wait for, default: default
+    Nominates a database to wait for, default: ``default``
