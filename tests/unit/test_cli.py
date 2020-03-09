@@ -20,6 +20,7 @@ CLI_PARAMS = {
     'wait_when_alive': 1,
     'stable': 3,
     'timeout': 1,
+    'database': 'default',
 }
 
 
