@@ -1,6 +1,7 @@
 """
 FILE: django_probes/management/commands/wait_for_database.py
 """
+import sys
 from time import sleep, time
 from django.core.management.base import BaseCommand, CommandError
 from django.db import connections, DEFAULT_DB_ALIAS
@@ -44,11 +45,12 @@ def wait_for_database(**opts):
 
                 err_message = str(err).strip()
                 print('Waiting for database (cause: {msg}) ... {elapsed}s'.
-                      format(msg=err_message, elapsed=elapsed_time))
+                      format(msg=err_message, elapsed=elapsed_time),
+                      file=sys.stderr, flush=True)
                 sleep(wait_for_db_seconds)
 
         uptime = int(time() - conn_alive_start)
-        print('Connection alive for > {}s'.format(uptime))
+        print('Connection alive for > {}s'.format(uptime), flush=True)
 
         if uptime >= stable_for_seconds:
             break
