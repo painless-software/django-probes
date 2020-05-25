@@ -1,16 +1,13 @@
 """
-FILE: django_probes/management/commands/wait_for_database.py
+Django management command ``wait_for_database``
 """
 import sys
+
 from time import sleep, time
+
 from django.core.management.base import BaseCommand, CommandError
 from django.db import connections, DEFAULT_DB_ALIAS
 from django.db.utils import OperationalError
-
-try:
-    TimeoutError
-except NameError:  # Python 2.7
-    TimeoutError = RuntimeError  # noqa, pylint: disable=redefined-builtin
 
 
 def wait_for_database(**opts):
@@ -88,8 +85,9 @@ class Command(BaseCommand):
                                  'up (seconds), default: 1')
         parser.add_argument('--database', default=DEFAULT_DB_ALIAS,
                             action='store', dest='database',
-                            help='Nominates a database to wait for. '
-                                 'Defaults to the "default" database.')
+                            help='which database of `settings.DATABASES` '
+                                 'to wait for. Defaults to the "default" '
+                                 'database.')
 
     def handle(self, *args, **options):
         """

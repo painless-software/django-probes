@@ -1,16 +1,10 @@
 """
 Verify that ``python manage.py wait_for_database`` works fine.
 """
-import pytest
-
-# from django.core.management import call_command
+from unittest.mock import patch
 from django.db.utils import OperationalError
 
-try:
-    from unittest.mock import patch
-except ImportError:  # Python 2.7
-    from mock import patch
-    TimeoutError = RuntimeError  # noqa, pylint: disable=redefined-builtin
+import pytest
 
 from django_probes.management.commands.wait_for_database \
     import wait_for_database
