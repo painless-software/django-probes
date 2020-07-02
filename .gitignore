@@ -19,3 +19,5 @@ __pycache__/
 /pytestdebug.log
 /.pytest_cache/
 /.tox/
+
+Pipfile.lock
