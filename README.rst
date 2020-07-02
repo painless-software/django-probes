@@ -73,6 +73,20 @@ configuration, which calls the ``wait_for_database`` management command:
                   name: django
               command: ['python', 'manage.py', 'wait_for_database']
 
+Use with Your Own Command
+-------------------------
+
+Alternatively, you can integrate the ``wait_for_database`` command in your
+own management command, and do things like database migration, load initial
+data, etc. with roughly the same Kubernetes setup as above.
+
+.. code:: python
+
+    from django.core.management import call_command
+
+    # ...
+    call_command('wait_for_database')
+
 Command Line Options
 --------------------
 
