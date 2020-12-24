@@ -38,7 +38,8 @@ def wait_for_database(**opts):
                 elapsed_time = int(time() - start)
                 if elapsed_time >= timeout_seconds:
                     raise TimeoutError(
-                        'Could not establish database connection.')
+                        'Could not establish database connection.'
+                        ) from err
 
                 err_message = str(err).strip()
                 print('Waiting for database (cause: {msg}) ... {elapsed}s'.
@@ -97,4 +98,4 @@ class Command(BaseCommand):
         try:
             wait_for_database(**options)
         except TimeoutError as err:
-            raise CommandError(err)
+            raise CommandError(err) from err

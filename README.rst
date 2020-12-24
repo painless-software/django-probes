@@ -1,7 +1,7 @@
 Django-probes |latest-version|
 ==============================
 
-|build-status| |python-support| |license|
+|checks-status| |tests-status| |python-support| |license|
 
 Provides a Django management command to check whether the primary database
 is ready to accept connections.
@@ -22,15 +22,18 @@ specific container just for running the database readiness check.
 .. |latest-version| image:: https://img.shields.io/pypi/v/django-probes.svg
    :alt: Latest version on PyPI
    :target: https://pypi.org/project/django-probes
-.. |build-status| image:: https://img.shields.io/travis/vshn/django-probes/master.svg
-   :alt: Build status
-   :target: https://travis-ci.org/vshn/django-probes
+.. |checks-status| image:: https://img.shields.io/github/workflow/status/painless-software/django-probes/Check/master?label=Check&logo=github
+   :alt: GitHub Workflow Status
+   :target: https://github.com/painless-software/django-probes/actions?query=workflow%3ACheck
+.. |tests-status| image:: https://img.shields.io/github/workflow/status/painless-software/django-probes/Test/master?label=Test&logo=github
+   :alt: GitHub Workflow Status
+   :target: https://github.com/painless-software/django-probes/actions?query=workflow%3ATest
 .. |python-support| image:: https://img.shields.io/pypi/pyversions/django-probes.svg
    :alt: Python versions
    :target: https://pypi.org/project/django-probes
 .. |license| image:: https://img.shields.io/pypi/l/django-probes.svg
    :alt: Software license
-   :target: https://github.com/vshn/django-probes/blob/master/LICENSE
+   :target: https://github.com/painless-software/django-probes/blob/master/LICENSE
 
 .. _Init Container: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
 
