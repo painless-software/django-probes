@@ -22,10 +22,10 @@ specific container just for running the database readiness check.
 .. |latest-version| image:: https://img.shields.io/pypi/v/django-probes.svg
    :alt: Latest version on PyPI
    :target: https://pypi.org/project/django-probes
-.. |checks-status| image:: https://img.shields.io/github/workflow/status/painless-software/django-probes/Check/master?label=Check&logo=github
+.. |checks-status| image:: https://img.shields.io/github/workflow/status/painless-software/django-probes/Check/main?label=Check&logo=github
    :alt: GitHub Workflow Status
    :target: https://github.com/painless-software/django-probes/actions?query=workflow%3ACheck
-.. |tests-status| image:: https://img.shields.io/github/workflow/status/painless-software/django-probes/Test/master?label=Test&logo=github
+.. |tests-status| image:: https://img.shields.io/github/workflow/status/painless-software/django-probes/Test/main?label=Test&logo=github
    :alt: GitHub Workflow Status
    :target: https://github.com/painless-software/django-probes/actions?query=workflow%3ATest
 .. |python-support| image:: https://img.shields.io/pypi/pyversions/django-probes.svg
@@ -33,7 +33,7 @@ specific container just for running the database readiness check.
    :target: https://pypi.org/project/django-probes
 .. |license| image:: https://img.shields.io/pypi/l/django-probes.svg
    :alt: Software license
-   :target: https://github.com/painless-software/django-probes/blob/master/LICENSE
+   :target: https://github.com/painless-software/django-probes/blob/main/LICENSE
 
 .. _Init Container: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
 
