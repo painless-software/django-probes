@@ -16,8 +16,11 @@ __pycache__/
 
 # testing
 /.cache/
-/pytestdebug.log
 /.pytest_cache/
 /.tox/
+/pytestdebug.log
+/tests/*-report.json
+/tests/*-report.xml
+.coverage
 
 Pipfile.lock

@@ -2,11 +2,10 @@
 Django management command ``wait_for_database``
 """
 import sys
-
 from time import sleep, time
 
 from django.core.management.base import BaseCommand, CommandError
-from django.db import connections, DEFAULT_DB_ALIAS
+from django.db import DEFAULT_DB_ALIAS, connections
 from django.db.utils import OperationalError
 
 
@@ -39,16 +38,16 @@ def wait_for_database(**opts):
                 if elapsed_time >= timeout_seconds:
                     raise TimeoutError(
                         'Could not establish database connection.'
-                        ) from err
+                    ) from err
 
                 err_message = str(err).strip()
-                print('Waiting for database (cause: {msg}) ... {elapsed}s'.
-                      format(msg=err_message, elapsed=elapsed_time),
+                print(f'Waiting for database (cause: {err_message}) ... '
+                      f'{elapsed_time}s',
                       file=sys.stderr, flush=True)
                 sleep(wait_for_db_seconds)
 
         uptime = int(time() - conn_alive_start)
-        print('Connection alive for > {}s'.format(uptime), flush=True)
+        print(f'Connection alive for > {uptime}s', flush=True)
 
         if uptime >= stable_for_seconds:
             break
