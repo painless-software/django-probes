@@ -9,7 +9,7 @@ on:
     - main
 
 jobs:
-  test:
+  python-django:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 5

@@ -1,5 +1,6 @@
 [tool.bandit]
-# Exclude/ignore of files is currently broken in Bandit.
+# Exclude/ignore of files and TOML reading is currently broken in Bandit
+exclude = [".cache",".git",".github",".tox","build","dist","tests"]
 
 [tool.black]
 color = true
