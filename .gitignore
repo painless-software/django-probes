@@ -1,5 +1,6 @@
 # IDEs & editors
 /.idea/
+/.vscode/
 
 # cache
 *.py[cod]
@@ -21,6 +22,7 @@ __pycache__/
 /pytestdebug.log
 /tests/*-report.json
 /tests/*-report.xml
+/tests/testproject.sqlite
 .coverage
 
 Pipfile.lock

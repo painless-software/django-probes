@@ -13,6 +13,8 @@ color_output = true
 profile = "black"
 
 [tool.pylint.master]
+django-settings-module = "tests.testproject.settings"
+load-plugins = ["pylint_django"]
 output-format = "colorized"
 
 [tool.pytest.ini_options]
