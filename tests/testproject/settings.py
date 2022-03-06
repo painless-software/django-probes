@@ -8,16 +8,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/stable/ref/settings/
 """
 
-from pathlib import Path
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/stable/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'b1h-uedc(&7Tu@7ecuk*x3l(93-=r*Za=wzzod@%)zn=v7u+_l'
+SECRET_KEY = 'insecure-random-key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -61,9 +56,9 @@ TEMPLATES = [
     },
 ]
 
-ROOT_URLCONF = 'test_project.urls'
+ROOT_URLCONF = 'testproject.urls'
 
-WSGI_APPLICATION = 'test_project.wsgi.application'
+WSGI_APPLICATION = 'testproject.wsgi.application'
 
 
 # Database
@@ -85,8 +80,6 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
-
-USE_L10N = True
 
 USE_TZ = True
 

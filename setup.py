@@ -35,6 +35,7 @@ setup(
         'kubernetes',
     ],
     classifiers=[
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Framework :: Django',
