@@ -24,10 +24,10 @@ specific container just for running the database readiness check.
    :target: https://pypi.org/project/django-probes
 .. |checks-status| image:: https://img.shields.io/github/workflow/status/painless-software/django-probes/Check/main?label=Check&logo=github
    :alt: GitHub Workflow Status
-   :target: https://github.com/painless-software/django-probes/actions?query=workflow%3ACheck
+   :target: https://github.com/painless-software/django-probes/actions/workflows/check.yml
 .. |tests-status| image:: https://img.shields.io/github/workflow/status/painless-software/django-probes/Test/main?label=Test&logo=github
    :alt: GitHub Workflow Status
-   :target: https://github.com/painless-software/django-probes/actions?query=workflow%3ATest
+   :target: https://github.com/painless-software/django-probes/actions/workflows/test.yml
 .. |python-support| image:: https://img.shields.io/pypi/pyversions/django-probes.svg
    :alt: Python versions
    :target: https://pypi.org/project/django-probes

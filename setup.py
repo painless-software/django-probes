@@ -2,7 +2,8 @@
 """
 Packaging setup to test access to the database
 """
-from os.path import abspath, dirname, join
+from pathlib import Path
+
 from setuptools import find_packages, setup
 
 import django_probes as package
@@ -10,7 +11,7 @@ import django_probes as package
 
 def read_file(filename):
     """Get the contents of a file"""
-    with open(join(abspath(dirname(__file__)), filename)) as file:
+    with (Path(__file__).resolve().parent / filename).open() as file:
         return file.read()
 
 
@@ -38,12 +39,13 @@ setup(
         'License :: OSI Approved :: BSD License',
         'Framework :: Django',
         'Framework :: Django :: 2.2',
-        'Framework :: Django :: 3.0',
-        'Framework :: Django :: 3.1',
+        'Framework :: Django :: 3.2',
+        'Framework :: Django :: 4.0',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
     ],
 )

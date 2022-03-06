@@ -2,12 +2,11 @@
 Verify that ``python manage.py wait_for_database`` works fine.
 """
 from unittest.mock import patch
-from django.db.utils import OperationalError
 
 import pytest
+from django.db.utils import OperationalError
 
-from django_probes.management.commands.wait_for_database \
-    import wait_for_database
+from django_probes.management.commands.wait_for_database import wait_for_database
 
 CLI_PARAMS = {
     'wait_when_down': 1,
