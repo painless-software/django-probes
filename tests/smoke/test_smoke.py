@@ -22,4 +22,4 @@ class WaitForDatabaseManagementCommandTest(TestCase):
     @patch('django.db.connection.cursor')
     def test_can_call_through_management(self, mock_db_cursor):
         call_command('wait_for_database', **CLI_PARAMS)
-        assert mock_db_cursor.called
+        self.assertTrue(mock_db_cursor.called)
