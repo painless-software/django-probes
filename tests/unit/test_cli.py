@@ -49,6 +49,7 @@ def test_command_error_raised_when_connection_absent(mock_db_cursor):
 
     assert mock_db_cursor.called
 
+
 @patch('django.db.connection.cursor')
 def test_can_call_through_management(mock_db_cursor):
     """
