@@ -64,7 +64,7 @@ class Command(BaseCommand):
     the command exits with an error status after reaching a timeout.
     """
     help = 'Probes for database availability'
-    requires_system_checks = False
+    requires_system_checks = []
 
     def add_arguments(self, parser):
         parser.add_argument('--timeout', '-t', type=int, default=180,
