@@ -4,6 +4,7 @@ Verify that ``python manage.py wait_for_database`` works fine.
 from unittest.mock import patch
 
 import pytest
+from django.core.management import CommandError, call_command
 from django.db.utils import OperationalError
 
 from django_probes.management.commands.wait_for_database import wait_for_database
@@ -36,3 +37,15 @@ def test_loops_stable_times(mock_db_cursor):
     wait_for_database(**CLI_PARAMS)
 
     assert mock_db_cursor.call_count == CLI_PARAMS['stable'] + 1
+
+
+@patch('django.db.connection.cursor', side_effect=OperationalError())
+def test_command_error_raised_when_connection_absent(mock_db_cursor):
+    with pytest.raises(CommandError):
+        call_command('wait_for_database', stable=0, timeout=0)
+
+
+@patch('django.db.connection.cursor')
+def test_can_call_through_management(mock_db_cursor):
+    call_command('wait_for_database', stable=0, timeout=0)
+    assert mock_db_cursor.called
