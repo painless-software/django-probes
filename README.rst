@@ -1,7 +1,7 @@
 Django-probes |latest-version|
 ==============================
 
-|checks-status| |tests-status| |python-support| |license|
+|checks-status| |tests-status| |publish-status| |python-support| |license|
 
 Provides a Django management command to check whether the primary database
 is ready to accept connections.
@@ -22,12 +22,15 @@ specific container just for running the database readiness check.
 .. |latest-version| image:: https://img.shields.io/pypi/v/django-probes.svg
    :alt: Latest version on PyPI
    :target: https://pypi.org/project/django-probes
-.. |checks-status| image:: https://img.shields.io/github/workflow/status/painless-software/django-probes/Checks/main?label=Checks&logo=github
-   :alt: GitHub Workflow Status
+.. |checks-status| image:: https://github.com/painless-software/django-probes/actions/workflows/check.yml/badge.svg
    :target: https://github.com/painless-software/django-probes/actions/workflows/check.yml
-.. |tests-status| image:: https://img.shields.io/github/workflow/status/painless-software/django-probes/Tests/main?label=Tests&logo=github
    :alt: GitHub Workflow Status
+.. |tests-status| image:: https://github.com/painless-software/django-probes/actions/workflows/test.yml/badge.svg
    :target: https://github.com/painless-software/django-probes/actions/workflows/test.yml
+   :alt: GitHub Workflow Status
+.. |publish-status| image:: https://github.com/painless-software/django-probes/actions/workflows/publish.yml/badge.svg
+   :target: https://github.com/painless-software/django-probes/actions/workflows/publish.yml
+   :alt: GitHub Workflow Status
 .. |python-support| image:: https://img.shields.io/pypi/pyversions/django-probes.svg
    :alt: Python versions
    :target: https://pypi.org/project/django-probes
