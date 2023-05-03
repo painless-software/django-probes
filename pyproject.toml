@@ -1,12 +1,14 @@
 [tool.bandit]
-# Exclude/ignore of files and TOML reading is currently broken in Bandit
-exclude = [".cache",".git",".github",".tox","build","dist","tests"]
+exclude_dirs = [".cache",".git",".github",".tox","build","dist","tests"]
 
 [tool.black]
 color = true
 
-[tool.coverage.xml]
-output = "tests/coverage-report.xml"
+[tool.coverage.run]
+source = ["django_probes"]
+
+[tool.coverage.report]
+show_missing = true
 
 [tool.isort]
 color_output = true
@@ -18,7 +20,7 @@ load-plugins = ["pylint_django"]
 output-format = "colorized"
 
 [tool.pytest.ini_options]
-addopts = "--junitxml=tests/unittests-report.xml --color=yes --verbose"
+addopts = "--color=yes --verbose"
 DJANGO_SETTINGS_MODULE = "testproject.settings"
 python_files = ["tests.py","test_*.py","*_tests.py"]
 pythonpath = ["tests"]
