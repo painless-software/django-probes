@@ -1,9 +1,11 @@
 """
 Django management command ``wait_for_database``
 """
+import shlex
 import sys
 from time import sleep, time
 
+from django.core.management import call_command
 from django.core.management.base import BaseCommand, CommandError
 from django.db import DEFAULT_DB_ALIAS, connections
 from django.db.utils import OperationalError
@@ -88,13 +90,20 @@ class Command(BaseCommand):
                             help='which database of `settings.DATABASES` '
                                  'to wait for. Defaults to the "default" '
                                  'database.')
+        parser.add_argument("--command", "-c", default=None,
+                            action="store", dest='command',
+                            help='execute this command when database is up')
 
     def handle(self, *args, **options):
         """
         Wait for a database connection to come up. Exit with error
         status when a timeout threshold is surpassed.
         """
+        command = options.pop("command", None)
         try:
             wait_for_database(**options)
         except TimeoutError as err:
             raise CommandError(err) from err
+        if command:
+            command_list = shlex.split(command)
+            call_command(command_list[0], *command_list[1:])
