@@ -1,6 +1,8 @@
 """
 Verify that ``python manage.py wait_for_database`` works fine.
 """
+import os
+import tempfile
 from unittest.mock import patch
 
 import pytest
@@ -56,4 +58,22 @@ def test_command_error_raised_when_connection_absent(mock_db_cursor):
     with pytest.raises(CommandError):
         call_command('wait_for_database', stable=0, timeout=0)
 
+    assert mock_db_cursor.called
+
+
+@patch('django.db.connection.cursor')
+def test_can_call_through_management_with_commands(mock_db_cursor):
+    """
+    Executing the management command works (w/o operational errors).
+    """
+    with tempfile.TemporaryDirectory() as dirname:
+        call_command('wait_for_database',
+                     "--stable=0",
+                     "--timeout=0",
+                     "-c",
+                     f"shell -c 'open(\"{dirname}/0\", \"w\").close()'",
+                     "-c",
+                     f"shell -c 'open(\"{dirname}/1\", \"w\").close()'",
+                     )
+        assert set(os.listdir(dirname)) == {"0", "1"}
     assert mock_db_cursor.called
