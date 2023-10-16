@@ -90,20 +90,20 @@ class Command(BaseCommand):
                             help='which database of `settings.DATABASES` '
                                  'to wait for. Defaults to the "default" '
                                  'database.')
-        parser.add_argument("--command", "-c", default=None,
-                            action="store", dest='command',
-                            help='execute this command when database is up')
+        parser.add_argument("--command", "-c", default=[],
+                            action="append", dest='command',
+                            help='execute this command when database is up (can be repeated multiple times).')
 
     def handle(self, *args, **options):
         """
         Wait for a database connection to come up. Exit with error
         status when a timeout threshold is surpassed.
         """
-        command = options.pop("command", None)
+        commands = options.pop("command", [])
         try:
             wait_for_database(**options)
         except TimeoutError as err:
             raise CommandError(err) from err
-        if command:
+        for command in commands:
             command_list = shlex.split(command)
             call_command(command_list[0], *command_list[1:])

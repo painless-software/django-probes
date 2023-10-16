@@ -109,3 +109,6 @@ if needed:
     delay between checks when database is up (seconds), default: ``1``
 :--database:
     which database of ``settings.DATABASES`` to wait for, default: ``default``
+:--command, -c:
+    execute this Django command when the database is ready.
+    This option can be used multiple times: ``wait_for_database -c 'migrate' -c 'runserver --skip-checks'``
