@@ -1,7 +1,7 @@
 Django-probes |latest-version|
 ==============================
 
-|checks-status| |tests-status| |publish-status| |python-support| |license|
+|checks-status| |tests-status| |publish-status| |download-stats| |python-support| |license|
 
 Provides a Django management command to check whether the primary database
 is ready to accept connections.
@@ -22,6 +22,9 @@ specific container just for running the database readiness check.
 .. |latest-version| image:: https://img.shields.io/pypi/v/django-probes.svg
    :alt: Latest version on PyPI
    :target: https://pypi.org/project/django-probes
+.. |download-stats| image:: https://img.shields.io/pypi/dm/django-probes.svg
+   :alt: Monthly downloads from PyPI
+   :target: https://pypistats.org/packages/django-probes
 .. |checks-status| image:: https://github.com/painless-software/django-probes/actions/workflows/check.yml/badge.svg
    :target: https://github.com/painless-software/django-probes/actions/workflows/check.yml
    :alt: GitHub Workflow Status
