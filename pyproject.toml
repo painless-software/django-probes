@@ -80,7 +80,7 @@ extend-ignore = ["ANN", "D", "EM101", "TRY003"]
 "tests/*.py" = ["S101"]
 "tests/testproject/settings.py" = ["S105"]
 "tests/unit/test_cli.py" = ["INP001", "PTH208"]
-"django_probes/management/commands/wait_for_database.py" = ["ARG002", "RUF012", "T201"]
+"django_probes/management/commands/wait_for_database.py" = ["ARG002", "RUF012", "T201", "TRY301"]
 
 [tool.setuptools]
 packages = [
