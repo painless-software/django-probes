@@ -103,17 +103,17 @@ Command Line Options
 The management command comes with sane defaults, which you can override
 if needed:
 
-:--timeout, -t:
-    how long to wait for the database before timing out (seconds), default: ``180``
-:--stable, -s:
-    how long to observe whether connection is stable (seconds), default: ``5``
-:--wait-when-down, -d:
-    delay between checks when database is down (seconds), default: ``2``
-:--wait-when-alive, -a:
-    delay between checks when database is up (seconds), default: ``1``
-:--database:
-    which database of ``settings.DATABASES`` to wait for, default: ``default``
 :--command, -c:
     execute Django management command(s) when the database is ready.
     This option can be used multiple times, e.g.
     ``wait_for_database -c 'migrate' -c 'runserver --skip-checks'``
+:--database:
+    which database of ``settings.DATABASES`` to wait for, default: ``default``
+:--stable, -s:
+    how long to observe whether connection is stable (seconds), default: ``5``
+:--timeout, -t:
+    how long to wait for the database before timing out (seconds), default: ``180``
+:--wait-when-alive, -a:
+    delay between checks when database is up (seconds), default: ``1``
+:--wait-when-down, -d:
+    delay between checks when database is down (seconds), default: ``2``
