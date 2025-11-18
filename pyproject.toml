@@ -72,6 +72,16 @@ DJANGO_SETTINGS_MODULE = "testproject.settings"
 python_files = ["tests.py","test_*.py","*_tests.py"]
 pythonpath = ["tests"]
 
+[tool.ruff.lint]
+extend-select = ["ALL"]
+extend-ignore = ["ANN", "D", "EM101", "TRY003"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*.py" = ["S101"]
+"tests/testproject/settings.py" = ["S105"]
+"tests/unit/test_cli.py" = ["INP001", "PTH208"]
+"django_probes/management/commands/wait_for_database.py" = ["ARG002", "RUF012", "T201"]
+
 [tool.setuptools]
 packages = [
     "django_probes",
