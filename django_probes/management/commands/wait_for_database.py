@@ -40,7 +40,7 @@ def wait_for_database(**opts):
                 elapsed_time = int(time() - start)
                 if elapsed_time >= timeout_seconds:
                     raise TimeoutError(
-                        "Could not establish database connection."
+                        "Could not establish database connection.",
                     ) from err
 
                 err_message = str(err).strip()
@@ -126,7 +126,10 @@ class Command(BaseCommand):
             default=[],
             action="append",
             dest="command",
-            help="execute this management command when database is up (can be repeated multiple times).",
+            help=(
+                "execute this management command when database is up"
+                " (can be repeated multiple times)."
+            ),
         )
 
     def handle(self, *args, **options):
