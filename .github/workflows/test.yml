@@ -14,36 +14,32 @@ env:
 
 jobs:
   python-django:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       max-parallel: 5
       fail-fast: false
       matrix:
         python-version:
-        - '3.6'
-        - '3.7'
-        - '3.8'
-        - '3.9'
         - '3.10'
         - '3.11'
+        - '3.12'
+        - '3.13'
         django-version:
-        - '3.2'
-        - '4.1'
         - '4.2'
+        - '5.1'
+        - '5.2'
+        include:
+        - { python-version: '3.9', django-version: '4.2' }
+        - { python-version: '3.14', django-version: '5.2' }
         exclude:
-        - { django-version: '3.2', python-version: '3.11' }
-        - { django-version: '4.1', python-version: '3.6' }
-        - { django-version: '4.1', python-version: '3.7' }
-        - { django-version: '4.2', python-version: '3.6' }
-        - { django-version: '4.2', python-version: '3.7' }
+        - { python-version: '3.13', django-version: '4.2' }
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
+    - uses: actions/checkout@v5
+    - uses: actions/setup-python@v6
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install build tools
-      run: |
-        python -m pip install tox-gh-actions wheel
+      run: python -m pip install tox-gh-actions
     - name: Run tests (Python ${{ matrix.python-version }}, Django ${{ matrix.django-version }})
       run: tox
       env:

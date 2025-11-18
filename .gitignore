@@ -10,6 +10,9 @@ __pycache__/
 /venv/
 /virtualenv/
 
+requirements.txt
+uv.lock
+
 # packaging
 /*.egg-info/
 /build/
@@ -24,5 +27,3 @@ __pycache__/
 /tests/*-report.xml
 /tests/testproject.sqlite
 .coverage
-
-Pipfile.lock

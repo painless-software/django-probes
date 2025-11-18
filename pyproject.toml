@@ -1,26 +1,77 @@
-[tool.bandit]
-exclude_dirs = [".cache",".git",".github",".tox","build","dist","tests"]
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = ["setuptools>=80"]
 
-[tool.black]
-color = true
+[project]
+name = "django-probes"
+dynamic = ["version"]
+description = "Make Django wait until database is ready. Probes for Docker and Kubernetes."
+readme = "README.rst"
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
+authors = [
+    {name = "Peter Bittner", email = "django@bittner.it"},
+]
+maintainers = [
+    {name = "Peter Bittner", email = "django@bittner.it"},
+]
+keywords=[
+    "containers",
+    "django",
+    "database",
+    "probes",
+    "docker",
+    "kubernetes",
+]
+classifiers=[
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.1",
+    "Framework :: Django :: 5.2",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "django>=4.2",
+]
 
-[tool.coverage.run]
-source = ["django_probes"]
+[project.urls]
+Homepage = "https://github.com/painless-software/django-probes"
 
 [tool.coverage.report]
 show_missing = true
+skip_covered = true
 
-[tool.isort]
-color_output = true
-profile = "black"
-
-[tool.pylint.master]
-django-settings-module = "tests.testproject.settings"
-load-plugins = ["pylint_django"]
-output-format = "colorized"
+[tool.coverage.run]
+source = ["django_probes"]
 
 [tool.pytest.ini_options]
 addopts = "--color=yes --verbose"
 DJANGO_SETTINGS_MODULE = "testproject.settings"
 python_files = ["tests.py","test_*.py","*_tests.py"]
 pythonpath = ["tests"]
+
+[tool.setuptools]
+packages = [
+    "django_probes",
+    "django_probes.management",
+    "django_probes.management.commands",
+]
+
+[tool.setuptools.dynamic]
+version = {attr = "django_probes.__version__"}
