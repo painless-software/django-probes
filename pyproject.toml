@@ -10,7 +10,13 @@ readme = "README.rst"
 license = "BSD-3-Clause"
 license-files = ["LICENSE"]
 authors = [
+    {name = "Bashar Said", email = "bashar.said@vshn.ch"},
+    {name = "d9pouces", email = "github@19pouces.net"},
+    {name = "Jorrit", email = "jorrit@wehelpen.nl"},
     {name = "Peter Bittner", email = "django@bittner.it"},
+    {name = "sambasan", email = "sambasan@users.noreply.github.com"},
+    {name = "Siming Yuan", email = "siyuan@cisco.com"},
+    {name = "Simon Rüegg", email = "simon.ruegg@vshn.ch"},
 ]
 maintainers = [
     {name = "Peter Bittner", email = "django@bittner.it"},
