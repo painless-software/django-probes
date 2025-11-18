@@ -43,11 +43,15 @@ specific container just for running the database readiness check.
 Installation
 ============
 
-The easiest way to install django-probes is with pip
+The easiest way to install django-probes is with pip or uv, e.g.
 
-.. code:: console
+.. code:: shell
 
-    $ pip install django-probes
+    pip install django-probes
+
+.. code:: shell
+
+    uv add django-probes
 
 Basic Usage
 ===========
@@ -110,5 +114,6 @@ if needed:
 :--database:
     which database of ``settings.DATABASES`` to wait for, default: ``default``
 :--command, -c:
-    execute this Django management command when the database is ready.
-    This option can be used multiple times, e.g. ``wait_for_database -c 'migrate' -c 'runserver --skip-checks'``
+    execute Django management command(s) when the database is ready.
+    This option can be used multiple times, e.g.
+    ``wait_for_database -c 'migrate' -c 'runserver --skip-checks'``
