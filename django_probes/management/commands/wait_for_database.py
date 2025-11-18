@@ -92,7 +92,7 @@ class Command(BaseCommand):
                                  'database.')
         parser.add_argument("--command", "-c", default=[],
                             action="append", dest='command',
-                            help='execute this command when database is up (can be repeated multiple times).')
+                            help='execute this management command when database is up (can be repeated multiple times).')
 
     def handle(self, *args, **options):
         """
@@ -105,5 +105,6 @@ class Command(BaseCommand):
         except TimeoutError as err:
             raise CommandError(err) from err
         for command in commands:
-            command_list = shlex.split(command)
-            call_command(command_list[0], *command_list[1:])
+            parts = shlex.split(command)
+            executable, params = parts[0], parts[1:]
+            call_command(executable, *params)

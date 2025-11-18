@@ -110,5 +110,5 @@ if needed:
 :--database:
     which database of ``settings.DATABASES`` to wait for, default: ``default``
 :--command, -c:
-    execute this Django command when the database is ready.
-    This option can be used multiple times: ``wait_for_database -c 'migrate' -c 'runserver --skip-checks'``
+    execute this Django management command when the database is ready.
+    This option can be used multiple times, e.g. ``wait_for_database -c 'migrate' -c 'runserver --skip-checks'``
