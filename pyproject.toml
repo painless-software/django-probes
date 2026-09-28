@@ -12,6 +12,7 @@ license-files = ["LICENSE"]
 authors = [
     {name = "Bashar Said", email = "bashar.said@vshn.ch"},
     {name = "d9pouces", email = "github@19pouces.net"},
+    {name = "Denis Krishtopa"},
     {name = "Jorrit", email = "jorrit@wehelpen.nl"},
     {name = "Peter Bittner", email = "django@bittner.it"},
     {name = "sambasan", email = "sambasan@users.noreply.github.com"},
@@ -33,15 +34,13 @@ classifiers=[
     "Development Status :: 5 - Production/Stable",
     "Environment :: Web Environment",
     "Framework :: Django",
-    "Framework :: Django :: 4.2",
-    "Framework :: Django :: 5.1",
     "Framework :: Django :: 5.2",
+    "Framework :: Django :: 6.0",
     "Intended Audience :: Developers",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -51,9 +50,9 @@ classifiers=[
     "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
-    "django>=4.2",
+    "django>=5.2",
 ]
 
 [project.urls]
@@ -74,7 +73,7 @@ pythonpath = ["tests"]
 
 [tool.ruff.lint]
 extend-select = ["ALL"]
-extend-ignore = ["ANN", "D", "EM101", "TRY003"]
+extend-ignore = ["ANN", "CPY001", "D", "EM101", "TRY003"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/*.py" = ["S101"]
